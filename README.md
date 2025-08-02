@@ -1,2 +1,3 @@
-# prometheus-grafana-monitoring
-Repositório do curso Jornada do Conhecimento de DevOps (Nível Avançado) - Monitoramento: Prometheus, Grafana e Alertmanager da plataforma Alura.
+# Monitoramento: Prometheus, Grafana e Alertmanager
+
+Repositório do curso [**Monitoramento: Prometheus, Grafana e Alertmanager**](https://cursos.alura.com.br/course/monitoramento-prometheus-grafana-alertmanager) da plataforma [Alura](https://cursos.alura.com.br/).
