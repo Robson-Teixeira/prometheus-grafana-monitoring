@@ -129,7 +129,6 @@
             - `application` = `$application` (variável criada anteriormente)
             - `instance` = `$instance` (variável criada anteriormente)
             - `job` = `api-forum-api`
-        - Operação: `Operações binárias` > `Multiplicar por escalar` = 1000
     - Visualização: `Estatística (Stat)`
         - Opções do painel
             - Título: `JDBC POOL`
@@ -144,3 +143,43 @@
             - Base: 🔴
             - Normal: 🟢
                 - Valor padrão: 10
+- 12º Adicionar painel/visualização
+    - Queries
+        - Data source: `Prometheus`
+        - Metric: `auth_user_success_total`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+    - Visualização: `Estatística (Stat)`
+        - Opções do painel
+            - Título: `USER LOGGED`
+            - Descrição: `Usuários logados`
+        - Opções de valores
+            - Cálculo: `Último não nulo`
+        - Estilos de estatísticas
+            - Modo gráfico: `nenhum`
+        - Opções padrões
+            - Unidade: `Diversos` > `Curto`
+        - Limites
+            - Base: 🟢
+- 13º Adicionar painel/visualização
+    - Queries
+        - Data source: `Prometheus`
+        - Metric: `auth_user_error_total`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+    - Visualização: `Estatística (Stat)`
+        - Opções do painel
+            - Título: `AUTH ERRORS`
+            - Descrição: `Erros de autenticação`
+        - Opções de valores
+            - Cálculo: `Último não nulo`
+        - Estilos de estatísticas
+            - Modo gráfico: `nenhum`
+        - Opções padrões
+            - Unidade: `Diversos` > `Curto`
+        - Limites
+            - Base: 🔴
