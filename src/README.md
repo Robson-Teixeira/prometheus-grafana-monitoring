@@ -151,16 +151,18 @@
             - `application` = `$application` (variável criada anteriormente)
             - `instance` = `$instance` (variável criada anteriormente)
             - `job` = `api-forum-api`
+        - Operação: `Funções de alcance` > `Aumentar` = 1m
     - Visualização: `Estatística (Stat)`
         - Opções do painel
-            - Título: `USER LOGGED`
-            - Descrição: `Usuários logados`
+            - Título: `USERS LOGGED`
+            - Descrição: `Usuários logados no último minuto`
         - Opções de valores
             - Cálculo: `Último não nulo`
         - Estilos de estatísticas
             - Modo gráfico: `nenhum`
         - Opções padrões
             - Unidade: `Diversos` > `Curto`
+            - Decimais: 0
         - Limites
             - Base: 🟢
 - 13º Adicionar painel/visualização
@@ -171,15 +173,21 @@
             - `application` = `$application` (variável criada anteriormente)
             - `instance` = `$instance` (variável criada anteriormente)
             - `job` = `api-forum-api`
+        - Operação: `Funções de alcance` > `Aumentar` = 1m
     - Visualização: `Estatística (Stat)`
         - Opções do painel
             - Título: `AUTH ERRORS`
-            - Descrição: `Erros de autenticação`
+            - Descrição: `Erros de autenticação no último minuto`
         - Opções de valores
             - Cálculo: `Último não nulo`
         - Estilos de estatísticas
             - Modo gráfico: `nenhum`
         - Opções padrões
             - Unidade: `Diversos` > `Curto`
+            - Decimais: 0
         - Limites
-            - Base: 🔴
+            - Base: 🟢
+            - Alerta: 🟠
+                - Valor padrão: 5
+            - Crítico: 🔴
+                - Valor padrão: 10
