@@ -191,3 +191,79 @@
                 - Valor padrão: 5
             - Crítico: 🔴
                 - Valor padrão: 10
+- 14º Adicionar painel/visualização
+    - Queries
+        - Query Active
+            - Data source: `Prometheus`
+            - Metric: `hikaricp_connections_active`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `pool` = `$pool` (variável criada anteriormente)`
+            - Opções
+                - Legenda: `active`
+            - Cor: 🟢
+        - Query Idle
+            - Data source: `Prometheus`
+            - Metric: `hikaricp_connections_idle`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `pool` = `$pool` (variável criada anteriormente)`
+            - Opções
+                - Legenda: `idle`
+            - Cor: 🟡
+        - Query Pending
+            - Data source: `Prometheus`
+            - Metric: `hikaricp_connections_pending`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `pool` = `$pool` (variável criada anteriormente)`
+            - Opções
+                - Legenda: `pending`
+            - Cor: 🔵
+    - Visualização: `Série temporal (Time series)`
+        - Opções do painel
+            - Título: `CONNECTION STATE`
+            - Descrição: `Estado das conexões com o database`
+        - Legenda
+            - Modo: `Tabela`
+            - Posicionamento da legenda: `Direita`
+            - Valores: `Min`, `Max`, `Last *`
+        - Estilos de gráfico
+            - Opacidade de preenchimento: 10
+            - Modo gradiente: `Opacidade`
+            - Mostrar pontos: `Nunca`
+        - Opções padrões
+            - Unidade: `Diversos` > `Curto`
+        - Limites
+            - Base: 🟢
+- 15º Adicionar painel/visualização
+    - Queries
+        - Data source: `Prometheus`
+        - Metric: `hikaricp_connections_timeout_total`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+            - `pool` = `$pool` (variável criada anteriormente)`
+        - Operação: `Funções de alcance` > `Aumentar` = 1m
+    - Visualização: `Estatística (Stat)`
+        - Opções do painel
+            - Título: `DB CONNECTION TIMEOUT`
+            - Descrição: `Conexões com o database em timeout`
+        - Opções de valores
+            - Cálculo: `Último não nulo`
+        - Estilos de estatísticas
+            - Modo gráfico: `nenhum`
+        - Opções padrões
+            - Unidade: `Diversos` > `Curto`
+            - Decimais: 0
+        - Limites
+            - Base: 🟢
+            - Crítico: 🔴
+                - Valor padrão: 2
