@@ -240,8 +240,6 @@
             - Mostrar pontos: `Nunca`
         - Opções padrões
             - Unidade: `Diversos` > `Curto`
-        - Limites
-            - Base: 🟢
 - 15º Adicionar painel/visualização
     - Queries
         - Data source: `Prometheus`
@@ -330,5 +328,114 @@
             - Mostrar pontos: `Nunca`
         - Opções padrões
             - Unidade: `Tempo` > `segundo(s)`
+- 19º Adicionar painel/visualização
+    - Queries
+        - Data source: `Prometheus`
+        - Metric: `http_server_requests_seconds_count`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+            - `uri` != `/actuator/prometheus`
+            - `status` = `500`
+        - Operação: `Funções de alcance` > `Aumentar` = 1m
+        - Operação: `Agregação` > `Soma`
+        - Opções
+    - Visualização: `Estatística (Stat)`
+        - Opções do painel
+            - Título: `ERROR 500`
+            - Descrição: `Número de erros 500 no último minuto`
+        - Opções de valores
+            - Cálculo: `Último não nulo`
+        - Estilos de estatísticas
+            - Modo gráfico: `nenhum`
+        - Opções padrões
+            - Unidade: `Diversos` > `Curto`
         - Limites
             - Base: 🟢
+            - Crítico: 🔴
+                - Valor padrão: 3
+- 20º Adicionar painel/visualização
+    - Queries
+        - Query 500
+            - Data source: `Prometheus`
+            - Metric: `http_server_requests_seconds_count`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `uri` != `/actuator/prometheus`
+                - `status` = `500`
+            - Operação: `Funções de alcance` > `Avaliar` = 5m
+            - Operação: `Agregação` > `Soma`
+            - Operador: `/`
+            - Metric: `http_server_requests_seconds_count`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `uri` != `/actuator/prometheus`
+            - Operação: `Funções de alcance` > `Avaliar` = 5m
+            - Operação: `Agregação` > `Soma`
+            - Opções
+                - Legenda: `500`
+            - Cor: 🔴
+        - Query 400
+            - Data source: `Prometheus`
+            - Metric: `http_server_requests_seconds_count`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `uri` != `/actuator/prometheus`
+                - `status` = `400`
+            - Operação: `Funções de alcance` > `Avaliar` = 5m
+            - Operação: `Agregação` > `Soma`
+            - Operador: `/`
+            - Metric: `http_server_requests_seconds_count`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `uri` != `/actuator/prometheus`
+            - Operação: `Funções de alcance` > `Avaliar` = 5m
+            - Operação: `Agregação` > `Soma`
+            - Opções
+                - Legenda: `400`
+            - Cor: 🟠
+        - Query 404
+            - Data source: `Prometheus`
+            - Metric: `http_server_requests_seconds_count`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `uri` != `/actuator/prometheus`
+                - `status` = `404`
+            - Operação: `Funções de alcance` > `Avaliar` = 5m
+            - Operação: `Agregação` > `Soma`
+            - Operador: `/`
+            - Metric: `http_server_requests_seconds_count`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `uri` != `/actuator/prometheus`
+            - Operação: `Funções de alcance` > `Avaliar` = 5m
+            - Operação: `Agregação` > `Soma`
+            - Opções
+                - Legenda: `404`
+            - Cor: 🟡
+    - Visualização: `Série temporal (Time series)`
+        - Opções do painel
+            - Título: `ERROR RATE`
+            - Descrição: `Taxa de erros nos últimos 5 minutos`
+        - Legenda
+            - Modo: `Tabela`
+            - Valores: `Min`, `Max`, `Mean` `Last *`, `Total`
+        - Estilos de gráfico
+            - Opacidade de preenchimento: 10
+            - Modo gradiente: `Opacidade`
+            - Mostrar pontos: `Nunca`
+        - Opções padrões
+            - Unidade: `Diversos` > `Porcentagem (0.0-1.0)`
