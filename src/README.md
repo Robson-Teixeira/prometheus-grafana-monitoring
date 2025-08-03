@@ -267,3 +267,68 @@
             - Base: 🟢
             - Crítico: 🔴
                 - Valor padrão: 2
+- 16º Adicionar nova linha ao dashboard
+    - Título: `API RED`
+- 17º Adicionar painel/visualização
+    - Queries
+        - Data source: `Prometheus`
+        - Metric: `http_server_requests_seconds_count`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+            <!-- - `uri` != `/actuator/prometheus` -->
+        - Operação: `Funções de alcance` > `Aumentar` = 1m
+        - Operação: `Agregação` > `Soma`
+    - Visualização: `Estatística (Stat)`
+        - Opções do painel
+            - Título: `TOTAL REQUESTS`
+            - Descrição: `Número de requisições no último minuto`
+        - Opções de valores
+            - Cálculo: `Último não nulo`
+        - Estilos de estatísticas
+            - Modo gráfico: `nenhum`
+        - Opções padrões
+            - Unidade: `Diversos` > `Curto`
+        - Limites
+            - Base: 🔴
+            - Alerta: 🟠
+                - Valor padrão: 30
+            - Aceitável: 🟢
+                - Valor padrão: 60
+- 18º Adicionar painel/visualização
+    - Queries
+        - Data source: `Prometheus`
+        - Metric: `http_server_requests_seconds_sum`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+            - `uri` != `/actuator/prometheus`
+        - Operação: `Funções de alcance` > `Avaliar` = 1m
+        - Operador: `/`
+        - Metric: `http_server_requests_seconds_count`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+            - `uri` != `/actuator/prometheus`
+        - Operação: `Funções de alcance` > `Avaliar` = 1m
+        - Opções
+            - Legenda: `Customizada` = `{{uri}} {{method}} {{status}}`
+    - Visualização: `Série temporal (Time series)`
+        - Opções do painel
+            - Título: `RESPONSE TIME`
+            - Descrição: `Tempo de resposta no último minuto`
+            - Legenda
+                - Modo: `Tabela`
+                - Posicionamento da legenda: `Direita`
+                - Valores: `Min`, `Max`, `Mean`, `Last *`
+        - Estilos de gráfico
+            - Opacidade de preenchimento: 10
+            - Modo gradiente: `Opacidade`
+            - Mostrar pontos: `Nunca`
+        - Opções padrões
+            - Unidade: `Tempo` > `segundo(s)`
+        - Limites
+            - Base: 🟢
