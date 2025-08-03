@@ -9,4 +9,73 @@
 - 1º Configurar o data source
     - Prometheus: http://prometheus-forum-api:9090
 - 2º Criar pasta para dashboards
-- 3º Criar dashboard (acessar settings para definir título, descrição, tags e etc.)
+- 3º Criar dashboard (acessar configurações do dashboard para definir título, descrição, tags e etc.)
+- 4º Criar variável (opcional) em configurações do dashboard
+    - Tipo de variável: `query`
+    - Nome: `application`
+    - Data source: `Prometheus`
+    - Tipo de query: `label values`
+    - Label: `application` (conforme definido em `management.metrics.tags.application` da aplicação)
+    - Preview será gerado automaticamente (`app-forum-api`)
+- 5º Criar variável (opcional) em configurações do dashboard
+    - Tipo de variável: `query`
+    - Nome: `instance`
+    - Data source: `Prometheus`
+    - Tipo de query: `label values`
+    - Label: `instance`
+    - Metric: `jvm_classes_loaded_classes`
+    - Label filters: 
+        - `application` = `$application` (variável criada anteriormente)
+    - Preview será gerado automaticamente (`app-forum-api:8080`)
+- 6º Criar variável (opcional) em configurações do dashboard
+    - Tipo de variável: `query`
+    - Nome: `pool`
+    - Data source: `Prometheus`
+    - Tipo de query: `label values`
+    - Label: `pool`
+    - Metric: `hikaricp_connections`
+    - Label filters: 
+        - `application` = `$application` (variável criada anteriormente)
+        - `instance` = `$instance` (variável criada anteriormente)
+    - Preview será gerado automaticamente (`HikariPool-1`)
+- 7º Adicionar nova linha ao dashboard
+    - Título: `API BASIC`
+- 8º Adicionar painel/visualização
+    - Queries
+        - Data source: `Prometheus`
+        - Metric: `process_uptime_seconds`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+    - Visualização: `Estatística (Stat)`
+        - Opções do painel
+            - Título: `UPTIME`
+            - Descrição: `API uptime`
+        - Opções de valores
+            - Cálculo: `Último não nulo`
+            - Modo gráfico: `nenhum`
+        - Opções padrões
+            - Unidade: `Tempo` > `duração (hh:mm:ss)`
+        - Limites
+            - Apenas item base: 🔵
+- 9º Adicionar painel/visualização
+    - Queries
+        - Data source: `Prometheus`
+        - Metric: `process_start_time_seconds`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+        - Operação: `Operações binárias` > `Multiplicar por escalar` = 1000
+    - Visualização: `Estatística (Stat)`
+        - Opções do painel
+            - Título: `START TIME`
+            - Descrição: `Hora da inicialização da API`
+        - Opções de valores
+            - Cálculo: `Último não nulo`
+            - Modo gráfico: `nenhum`
+        - Opções padrões
+            - Unidade: `Data e hora` > `Data e hora local (Sem data se for hoje)`
+        - Limites
+            - Apenas item base: 🔵
