@@ -79,3 +79,68 @@
             - Unidade: `Data e hora` > `Data e hora local (Sem data se for hoje)`
         - Limites
             - Apenas item base: 🔵
+- 10º Adicionar painel/visualização
+    - Queries
+        - Query Warn
+            - Data source: `Prometheus`
+            - Metric: `logback_events_total`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `level` = `warn`
+            - Operação: `Funções de alcance` > `Aumentar` = 5m
+            - Operação: `Agregação` > `Soma` > `Rótulo` = `level`
+            - Opções
+                - Legenda: `Customizada` = `{{level}}`
+            - Cor: 🟡
+        - Query Error
+            - Data source: `Prometheus`
+            - Metric: `logback_events_total`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `level` = `error`
+            - Operação: `Funções de alcance` > `Aumentar` = 5m
+            - Operação: `Agregação` > `Soma` > `Rótulo` = `level`
+            - Opções
+                - Legenda: `Customizada` = `{{level}}`
+            - Cor: 🔴
+    - Visualização: `Série temporal (Time series)`
+        - Opções do painel
+            - Título: `WARN & ERROR LOG`
+            - Descrição: `Warnings e erros logados nos últimos 5 minutos`
+        - Legenda
+            - Modo: `Tabela`
+            - Valores: `Min`, `Max`, `Last *`, `Total`
+        - Estilos de gráfico
+            - Opacidade de preenchimento: 10
+            - Modo gradiente: `Opacidade`
+            - Mostrar pontos: `Nunca`
+        - Opções padrões
+            - Unidade: `Diversos` > `Curto`
+            - Decimais: 0
+- 11º Adicionar painel/visualização
+    - Queries
+        - Data source: `Prometheus`
+        - Metric: `hikaricp_connections`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+        - Operação: `Operações binárias` > `Multiplicar por escalar` = 1000
+    - Visualização: `Estatística (Stat)`
+        - Opções do painel
+            - Título: `JDBC POOL`
+            - Descrição: `Pool de conexões JDBC`
+        - Opções de valores
+            - Cálculo: `Último não nulo`
+        - Estilos de estatísticas
+            - Modo gráfico: `nenhum`
+        - Opções padrões
+            - Unidade: `Diversos` > `Curto`
+        - Limites
+            - Base: 🔴
+            - Normal: 🟢
+                - Valor padrão: 10
