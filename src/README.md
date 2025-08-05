@@ -576,3 +576,106 @@
             - Mostrar pontos: `Nunca`
         - Opções padrões
             - Unidade: `Diversos` > `Curto`
+- 23º Adicionar painel/visualização
+    - Queries
+        - Query /topicos
+            - Data source: `Prometheus`
+            - Metric: `http_server_requests_seconds_sum`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `status` = `200`
+                - `uri` = `/topicos`
+            - Operação: `Funções de alcance` > `Avaliar` = 1m
+            - Operador: `/` (Operações > Operação binária > Operação binária com query)
+            - Metric: `http_server_requests_seconds_count`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `status` = `200`
+                - `uri` = `/topicos`
+            - Operação: `Funções de alcance` > `Avaliar` = 1m
+            - Opções
+                - Legenda: `Customizada` = `{{uri}} {{method}} {{status}}`
+        - Query /topicos/{id}
+            - Data source: `Prometheus`
+            - Metric: `http_server_requests_seconds_sum`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `status` = `200`
+                - `uri` = `/topicos/{id}`
+            - Operação: `Funções de alcance` > `Avaliar` = 1m
+            - Operador: `/` (Operações > Operação binária > Operação binária com query)
+            - Metric: `http_server_requests_seconds_count`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `status` = `200`
+                - `uri` = `/topicos/{id}`
+            - Operação: `Funções de alcance` > `Avaliar` = 1m
+            - Opções
+                - Legenda: `Customizada` = `{{uri}} {{method}} {{status}}`
+        - Query /auth
+            - Data source: `Prometheus`
+            - Metric: `http_server_requests_seconds_sum`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `status` = `200`
+                - `uri` = `/auth`
+            - Operação: `Funções de alcance` > `Avaliar` = 1m
+            - Operador: `/` (Operações > Operação binária > Operação binária com query)
+            - Metric: `http_server_requests_seconds_count`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `status` = `200`
+                - `uri` = `/auth`
+            - Operação: `Funções de alcance` > `Avaliar` = 1m
+            - Opções
+                - Legenda: `Customizada` = `{{uri}} {{method}} {{status}}`
+    - Visualização: `Série temporal (Time series)`
+        - Opções do painel
+            - Título: `AVERAGE REQUEST DURATION`
+            - Descrição: `Duração média de requisições no último minuto`
+        - Legenda
+            - Modo: `Tabela`
+            - Valores: `Min`, `Max`, `Mean`, `Last *`
+        - Estilos de gráfico
+            - Opacidade de preenchimento: 10
+            - Modo gradiente: `Opacidade`
+            - Mostrar pontos: `Nunca`
+        - Opções padrões
+            - Unidade: `Tempo` > `segundo(s)`
+- 24º Adicionar painel/visualização
+    - Queries
+        - Data source: `Prometheus`
+        - Metric: `http_server_requests_seconds_max`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+            - `status` = `200`
+            - `uri` != `/actuator/prometheus`
+        - Opções
+            - Legenda: `Customizada` = `{{uri}} {{method}} {{status}}`
+    - Visualização: `Série temporal (Time series)`
+        - Opções do painel
+            - Título: `MAX REQUEST DURATION`
+            - Descrição: `Duração máxima de uma requisição no último minuto`
+        - Legenda
+            - Modo: `Tabela`
+            - Valores: `Min`, `Max`, `Mean`, `Last *`
+        - Estilos de gráfico
+            - Opacidade de preenchimento: 10
+            - Modo gradiente: `Opacidade`
+            - Mostrar pontos: `Nunca`
+        - Opções padrões
+            - Unidade: `Tempo` > `segundo(s)`
