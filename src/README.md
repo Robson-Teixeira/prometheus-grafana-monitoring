@@ -304,7 +304,7 @@
             - `job` = `api-forum-api`
             - `uri` != `/actuator/prometheus`
         - Operação: `Funções de alcance` > `Avaliar` = 1m
-        - Operador: `/`
+        - Operador: `/` (Operações > Operação binária > Operação binária com query)
         - Metric: `http_server_requests_seconds_count`
         - Label filters:
             - `application` = `$application` (variável criada anteriormente)
@@ -368,7 +368,7 @@
                 - `status` = `500`
             - Operação: `Funções de alcance` > `Avaliar` = 5m
             - Operação: `Agregação` > `Soma`
-            - Operador: `/`
+            - Operador: `/` (Operações > Operação binária > Operação binária com query)
             - Metric: `http_server_requests_seconds_count`
             - Label filters:
                 - `application` = `$application` (variável criada anteriormente)
@@ -391,7 +391,7 @@
                 - `status` = `400`
             - Operação: `Funções de alcance` > `Avaliar` = 5m
             - Operação: `Agregação` > `Soma`
-            - Operador: `/`
+            - Operador: `/` (Operações > Operação binária > Operação binária com query)
             - Metric: `http_server_requests_seconds_count`
             - Label filters:
                 - `application` = `$application` (variável criada anteriormente)
@@ -414,7 +414,7 @@
                 - `status` = `404`
             - Operação: `Funções de alcance` > `Avaliar` = 5m
             - Operação: `Agregação` > `Soma`
-            - Operador: `/`
+            - Operador: `/` (Operações > Operação binária > Operação binária com query)
             - Metric: `http_server_requests_seconds_count`
             - Label filters:
                 - `application` = `$application` (variável criada anteriormente)
@@ -439,3 +439,140 @@
             - Mostrar pontos: `Nunca`
         - Opções padrões
             - Unidade: `Diversos` > `Porcentagem (0.0-1.0)`
+- 21º Adicionar painel/visualização
+    - Queries
+        - Query 99%
+            - Data source: `Prometheus`
+            - Metric: `http_server_requests_seconds_bucket`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `uri` != `/actuator/prometheus`
+            - Operação: `Funções de alcance` > `Avaliar` = 1m
+            - Operação: `Agregação` > `Soma`
+                - Por rótulo: `le`
+            - Operação: `Funções` > `Quantil do histograma` = 0.99
+            - Opções
+                - Legenda: `Customizada` = `99%`
+        - Query 90%
+            - Data source: `Prometheus`
+            - Metric: `http_server_requests_seconds_bucket`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `uri` != `/actuator/prometheus`
+            - Operação: `Funções de alcance` > `Avaliar` = 1m
+            - Operação: `Agregação` > `Soma`
+                - Por rótulo: `le`
+            - Operação: `Funções` > `Quantil do histograma` = 0.90
+            - Opções
+                - Legenda: `Customizada` = `90%`
+        - Query 75%
+            - Data source: `Prometheus`
+            - Metric: `http_server_requests_seconds_bucket`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `uri` != `/actuator/prometheus`
+            - Operação: `Funções de alcance` > `Avaliar` = 1m
+            - Operação: `Agregação` > `Soma`
+                - Por rótulo: `le`
+            - Operação: `Funções` > `Quantil do histograma` = 0.75
+            - Opções
+                - Legenda: `Customizada` = `75%`
+        - Query 50%
+            - Data source: `Prometheus`
+            - Metric: `http_server_requests_seconds_bucket`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `uri` != `/actuator/prometheus`
+            - Operação: `Funções de alcance` > `Avaliar` = 1m
+            - Operação: `Agregação` > `Soma`
+                - Por rótulo: `le`
+            - Operação: `Funções` > `Quantil do histograma` = 0.50
+            - Opções
+                - Legenda: `Customizada` = `50%`
+        - Query 25%
+            - Data source: `Prometheus`
+            - Metric: `http_server_requests_seconds_bucket`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `uri` != `/actuator/prometheus`
+            - Operação: `Funções de alcance` > `Avaliar` = 1m
+            - Operação: `Agregação` > `Soma`
+                - Por rótulo: `le`
+            - Operação: `Funções` > `Quantil do histograma` = 0.25
+            - Opções
+                - Legenda: `Customizada` = `25%`
+    - Visualização: `Série temporal (Time series)`
+        - Opções do painel
+            - Título: `LATENCY AVERAGE`
+            - Descrição: `Latência média por minuto`
+        - Legenda
+            - Modo: `Tabela`
+            - Posicionamento da legenda: `Direita`
+            - Valores: `Last *`
+        - Estilos de gráfico
+            - Opacidade de preenchimento: 10
+            - Modo gradiente: `Opacidade`
+            - Mostrar pontos: `Nunca`
+        - Opções padrões
+            - Unidade: `Tempo` > `segundo(s)`
+- 22º Adicionar painel/visualização
+    - Queries
+        - Query /topicos
+            - Data source: `Prometheus`
+            - Metric: `http_server_requests_seconds_count`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `uri` = `/topicos`
+            - Operação: `Funções de alcance` > `Aumentar` = 1m
+            - Operação: `Agregação` > `Soma`
+                - Opções
+                    - Legenda: `Customizada` = `/topicos`
+        - Query /topicos/{id}
+            - Data source: `Prometheus`
+            - Metric: `http_server_requests_seconds_count`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `uri` = `/topicos/{id}`
+            - Operação: `Funções de alcance` > `Aumentar` = 1m
+            - Operação: `Agregação` > `Soma`
+                - Opções
+                    - Legenda: `Customizada` = `/topicos/{id}`
+        - Query /auth
+            - Data source: `Prometheus`
+            - Metric: `http_server_requests_seconds_count`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+                - `uri` = `/auth`
+            - Operação: `Funções de alcance` > `Aumentar` = 1m
+            - Operação: `Agregação` > `Soma`
+                - Opções
+                    - Legenda: `Customizada` = `/auth`
+    - Visualização: `Série temporal (Time series)`
+        - Opções do painel
+            - Título: `REQUEST COUNT`
+            - Descrição: `Número de requisições por endpoint no último minuto`
+        - Legenda
+            - Modo: `Tabela`
+            - Valores: `Min`, `Max`, `Mean`, `Last *`
+        - Estilos de gráfico
+            - Opacidade de preenchimento: 10
+            - Modo gradiente: `Opacidade`
+            - Mostrar pontos: `Nunca`
+        - Opções padrões
+            - Unidade: `Diversos` > `Curto`
