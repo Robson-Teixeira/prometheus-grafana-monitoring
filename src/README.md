@@ -679,3 +679,69 @@
             - Mostrar pontos: `Nunca`
         - Opções padrões
             - Unidade: `Tempo` > `segundo(s)`
+25º Adicionar painel/visualização
+    - Queries
+        - Data source: `Prometheus`
+        - Metric: `jvm_memory_used_bytes`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+            - `area` = `heap`
+        - Operação: `Agregação` > `Soma`
+        - Operação: `Operações binárias` > `Multiplicar por escalar` = 100
+        - Operador: `/` (Operações > Operação binária > Operação binária com query)
+        - Metric: `jvm_memory_max_bytes`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+            - `area` = `heap`
+        - Operação: `Agregação` > `Soma`
+    - Visualização: `Medidor (Gauge)`
+        - Opções do painel
+            - Título: `HEAP USED`
+            - Descrição: `Memória heap utilizada`
+        - Opções padrões
+            - Unidade: `Diversos` > `Porcentagem (0-100)`
+            - Mínimo: 0
+            - Máximo: 100
+        - Limites
+            - Base: 🟢
+            - Problema: 🔴
+                - Valor padrão: 80
+            - Crítico: 🟣
+                - Valor padrão: 100
+26º Adicionar painel/visualização
+    - Queries
+        - Data source: `Prometheus`
+        - Metric: `jvm_memory_used_bytes`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+            - `area` = `nonheap`
+        - Operação: `Agregação` > `Soma`
+        - Operação: `Operações binárias` > `Multiplicar por escalar` = 100
+        - Operador: `/` (Operações > Operação binária > Operação binária com query)
+        - Metric: `jvm_memory_max_bytes`
+        - Label filters:
+            - `application` = `$application` (variável criada anteriormente)
+            - `instance` = `$instance` (variável criada anteriormente)
+            - `job` = `api-forum-api`
+            - `area` = `nonheap`
+        - Operação: `Agregação` > `Soma`
+    - Visualização: `Medidor (Gauge)`
+        - Opções do painel
+            - Título: `NON-HEAP USED`
+            - Descrição: `Memória non-heap utilizada`
+        - Opções padrões
+            - Unidade: `Diversos` > `Porcentagem (0-100)`
+            - Mínimo: 0
+            - Máximo: 100
+        - Limites
+            - Base: 🟢
+            - Problema: 🔴
+                - Valor padrão: 80
+            - Crítico: 🟣
+                - Valor padrão: 100
