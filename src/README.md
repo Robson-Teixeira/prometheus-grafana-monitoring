@@ -1,6 +1,9 @@
 ## Esquema da aplicação
 ![Esquema da aplicação](img/20250801225137.png)
 
+## Ferramentas
+- [Slack](https://slack.com/)
+
 ## Comandos
 - `docker-compose up` para iniciar os containers do Docker (executar no diretório em que se encontra o arquivo `docker-compose.yml`)
 
@@ -815,3 +818,9 @@
             - Mostrar pontos: `Nunca`
         - Opções padrões
             - Unidade: `Diversos` > `Curto`
+
+## Iniciando o Slack
+- 1º Criar conta
+- 2º Criar canal
+- 3º Adicionar app `Incoming WebHooks` ao canal criado
+- 4º Copiar Webhook URL
