@@ -679,7 +679,9 @@
             - Mostrar pontos: `Nunca`
         - Opções padrões
             - Unidade: `Tempo` > `segundo(s)`
-25º Adicionar painel/visualização
+- 25º Adicionar nova linha ao dashboard
+    - Título: `API USE`
+- 26º Adicionar painel/visualização
     - Queries
         - Data source: `Prometheus`
         - Metric: `jvm_memory_used_bytes`
@@ -712,7 +714,7 @@
                 - Valor padrão: 80
             - Crítico: 🟣
                 - Valor padrão: 100
-26º Adicionar painel/visualização
+- 27º Adicionar painel/visualização
     - Queries
         - Data source: `Prometheus`
         - Metric: `jvm_memory_used_bytes`
@@ -745,3 +747,71 @@
                 - Valor padrão: 80
             - Crítico: 🟣
                 - Valor padrão: 100
+- 28º Adicionar painel/visualização
+    - Queries
+        - Query System CPU usage
+            - Data source: `Prometheus`
+            - Metric: `system_cpu_usage`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+            - Opções
+                - Legenda: `Customizada` = `System CPU usage`
+        - Query Process CPU usage
+            - Data source: `Prometheus`
+            - Metric: `process_cpu_usage`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+            - Opções
+                - Legenda: `Customizada` = `Process CPU usage`
+    - Visualização: `Série temporal (Time series)`
+        - Opções do painel
+            - Título: `CPU UTILIZATION`
+            - Descrição: `Utilização de CPU`
+        - Legenda
+            - Modo: `Tabela`
+            - Posicionamento da legenda: `Direita`
+            - Valores: `Min`, `Max`, `Last *`
+        - Estilos de gráfico
+            - Opacidade de preenchimento: 10
+            - Modo gradiente: `Opacidade`
+            - Mostrar pontos: `Nunca`
+        - Opções padrões
+            - Unidade: `Diversos` > `Curto`
+- 29º Adicionar painel/visualização
+    - Queries
+        - Query Load average
+            - Data source: `Prometheus`
+            - Metric: `system_load_average_1m`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+            - Opções
+                - Legenda: `Customizada` = `Load average [1m]`
+        - Query CPU count
+            - Data source: `Prometheus`
+            - Metric: `system_cpu_count`
+            - Label filters:
+                - `application` = `$application` (variável criada anteriormente)
+                - `instance` = `$instance` (variável criada anteriormente)
+                - `job` = `api-forum-api`
+            - Opções
+                - Legenda: `Customizada` = `CPU core size`
+    - Visualização: `Série temporal (Time series)`
+        - Opções do painel
+            - Título: `LOAD AVERAGE`
+            - Descrição: `Média de uso da CPU`
+        - Legenda
+            - Modo: `Tabela`
+            - Posicionamento da legenda: `Direita`
+            - Valores: `Min`, `Max`, `Last *`
+        - Estilos de gráfico
+            - Opacidade de preenchimento: 10
+            - Modo gradiente: `Opacidade`
+            - Mostrar pontos: `Nunca`
+        - Opções padrões
+            - Unidade: `Diversos` > `Curto`
