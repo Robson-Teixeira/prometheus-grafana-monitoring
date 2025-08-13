@@ -2,6 +2,8 @@
 ![Esquema da aplicação](img/20250801225137.png)
 
 ## Ferramentas
+- [Grafana](https://grafana.com/)
+    - [Dashboards](https://grafana.com/grafana/dashboards)
 - [Slack](https://slack.com/)
 
 ## Comandos

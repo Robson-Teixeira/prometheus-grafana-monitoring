@@ -29,4 +29,5 @@ replay_pid*
 # Others
 src/app/target/
 src/prometheus/prometheus_data/
-src/grafana
+src/grafana/**/
+src/grafana/grafana.db
